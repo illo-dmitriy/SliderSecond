@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mySecondSlider</title>
+</head>
+<body>
+<style>
+	.wraper{
+		padding-left: 400px;
+	}
+	.mainSlide img {
+		width: 400px;
+		height: 400px;
+	}
+	.allSliders img {
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<div class="wraper">
+	<div class='mainSlide'></div>
+		<div class="allSliders">
+			<img src="1.jpg" alt="1">
+			<img src="2.jpg" alt="2">
+			<img src="3.jpg" alt="3">
+			<img src="4.jpg" alt="4">
+		</div>
+	</div>
+	<script>
+		
+		function Slider() {
+			this.mainSlide = document.querySelector('.mainSlide');
+			this.allSliders = document.querySelector('.allSliders');
+			this.firstSlideSrc =  this.allSliders.firstElementChild.src;
+			this.mainSlide.insertAdjacentHTML('afterBegin', '<img src="'+this.firstSlideSrc+'">');
+			this.allSliders.addEventListener('click', this.getImage.bind(this));
+		}
+		
+		Slider.prototype.getImage = function(e){
+			var target = e && e.target || window.event.srcElement;
+			var attr = target.getAttribute('src');
+			if (attr){
+				this.mainSlide.firstElementChild.src = attr;
+			}
+		}
+		 new Slider();
+	</script>
+</body>
+</html>
